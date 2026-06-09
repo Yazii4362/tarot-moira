@@ -492,13 +492,20 @@
   top: 22%;
 }
 
-/* 와와 마스코트 — 무대 가운데 큰 캐릭터 */
+/* 와와 마스코트 — 무대 가운데, 천사+악마 페어 (가로형) */
 .hero__mascot {
   position: relative;
-  width: clamp(180px, 24vw, 280px);
-  height: clamp(220px, 30vw, 350px);
+  width: clamp(280px, 38vw, 460px);
+  height: clamp(190px, 26vw, 310px);
   z-index: 2;
   filter: drop-shadow(0 28px 24px rgba(33, 80, 130, 0.22));
+}
+
+.hero__mascot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 @media (max-width: 720px) {
@@ -514,8 +521,8 @@
     top: 26%;
   }
   .hero__mascot {
-    width: 200px;
-    height: 240px;
+    width: 300px;
+    height: 200px;
   }
 }
 
@@ -2036,7 +2043,388 @@
   display: inline-block;
 }
 
-/* ── ABOUT ── */
+/* ============================================================
+   ABOUT — 와와타로 소개 페이지
+   ============================================================ */
+.about {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-12);
+}
+
+.about-hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-6) var(--sp-2) 0;
+}
+
+.about-hero__visual {
+  width: clamp(260px, 40vw, 420px);
+  height: clamp(170px, 26vw, 280px);
+  margin-bottom: var(--sp-2);
+}
+
+.about-hero__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.about-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.6vw, 44px);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.about-hero h1 em {
+  color: var(--color-primary);
+  font-style: normal;
+}
+
+.about-hero .lead {
+  max-width: 640px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--c-text);
+}
+
+/* === Block (사용 방법, 와와의 관점 카드) === */
+.about-block {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(252, 242, 218, 0.6) 100%
+    );
+  border: 1px solid rgba(217, 169, 58, 0.32);
+  border-radius: 24px;
+  padding: var(--sp-8);
+  box-shadow:
+    0 18px 40px rgba(33, 80, 130, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
+.about-block__head {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-5);
+}
+
+.about-block__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--r-full);
+  background: linear-gradient(180deg, #f5d36a 0%, #d9a93a 100%);
+  font-size: 20px;
+  box-shadow:
+    0 6px 14px rgba(217, 169, 58, 0.4),
+    inset 0 1px 0 rgba(255, 245, 190, 0.8);
+}
+
+.about-block__head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 28px);
+  letter-spacing: 0.02em;
+  color: var(--c-text);
+}
+
+.about-block__lead {
+  margin: 0 0 var(--sp-6);
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--c-text);
+}
+
+.about-block__lead strong {
+  color: var(--color-primary);
+}
+
+/* === 사용 방법 step === */
+.about-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.about-steps li {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--sp-4);
+  align-items: start;
+}
+
+.about-steps__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  color: #1a3a5c;
+  background: linear-gradient(180deg, #ffffff 0%, #d6f0ff 100%);
+  box-shadow:
+    0 4px 10px rgba(33, 80, 130, 0.12),
+    inset 0 0 0 1.2px rgba(74, 175, 232, 0.4);
+}
+
+.about-steps li p {
+  margin: 0;
+  padding-top: 6px;
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--c-text);
+}
+
+.about-steps li p em {
+  color: var(--color-primary);
+  font-style: normal;
+}
+
+.about-steps li p strong {
+  color: var(--c-text);
+  font-weight: 700;
+}
+
+/* === 천사/악마 페어 카드 === */
+.about-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+}
+
+.about-pair__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--sp-5) var(--sp-4);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-pair__card--angel {
+  border-color: rgba(255, 200, 110, 0.6);
+  background:
+    linear-gradient(180deg, rgba(255, 247, 220, 0.9), rgba(255, 255, 255, 0.7));
+}
+
+.about-pair__card--demon {
+  border-color: rgba(185, 127, 232, 0.45);
+  background:
+    linear-gradient(180deg, rgba(248, 240, 255, 0.85), rgba(255, 255, 255, 0.7));
+}
+
+.about-pair__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(33, 80, 130, 0.15);
+}
+
+.about-pair__visual {
+  width: 140px;
+  height: 160px;
+  margin-bottom: var(--sp-3);
+}
+
+.about-pair__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.about-pair__body header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: var(--sp-2);
+}
+
+.about-pair__emoji {
+  font-size: 22px;
+}
+
+.about-pair__body h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  color: var(--c-text);
+}
+
+.about-pair__sub {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border-radius: var(--r-full);
+}
+
+.about-pair__card--angel .about-pair__sub {
+  background: rgba(255, 200, 110, 0.25);
+  color: #8a6a25;
+}
+
+.about-pair__card--demon .about-pair__sub {
+  background: rgba(185, 127, 232, 0.18);
+  color: #6b3b9a;
+}
+
+.about-pair__body p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: var(--c-text);
+}
+
+.about-pair__body p em {
+  color: var(--color-primary);
+  font-style: normal;
+}
+
+/* === 예시 박스 === */
+.about-example {
+  background: rgba(214, 240, 255, 0.5);
+  border: 1px solid rgba(74, 175, 232, 0.3);
+  border-radius: 16px;
+  padding: var(--sp-5) var(--sp-5);
+}
+
+.about-example__title {
+  display: block;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: #1a3a5c;
+  margin-bottom: var(--sp-3);
+}
+
+.about-example ul {
+  list-style: none;
+  margin: 0 0 var(--sp-4);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.about-example li {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: var(--sp-3);
+  align-items: start;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+}
+
+.about-example__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.about-example__tag--angel {
+  background: rgba(255, 200, 110, 0.3);
+  color: #8a6a25;
+}
+
+.about-example__tag--demon {
+  background: rgba(185, 127, 232, 0.22);
+  color: #6b3b9a;
+}
+
+.about-example__quote {
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--c-text);
+}
+
+.about-example__close {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--c-text);
+  text-align: center;
+  padding-top: var(--sp-2);
+  border-top: 1px dashed rgba(74, 175, 232, 0.3);
+}
+
+.about-example__close strong {
+  color: var(--color-primary);
+}
+
+/* === CTA === */
+.about-cta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-6) 0 var(--sp-4);
+}
+
+@media (max-width: 720px) {
+  .about {
+    gap: var(--sp-8);
+  }
+  .about-block {
+    padding: var(--sp-5) var(--sp-4);
+  }
+  .about-pair {
+    grid-template-columns: 1fr;
+  }
+  .about-pair__visual {
+    width: 120px;
+    height: 140px;
+  }
+  .about-steps li {
+    grid-template-columns: 44px 1fr;
+    gap: var(--sp-3);
+  }
+  .about-steps__num {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+  }
+  .about-example li {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .about-example__tag {
+    justify-self: start;
+  }
+}
+
+/* (Legacy) about-card 유지 — 다른 곳에서 안 쓰지만 안전망 */
 .about-card {
   background: var(--c-glass);
   border: 1px solid var(--c-glass-border);
