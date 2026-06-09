@@ -3,10 +3,12 @@ import { motion } from "framer-motion";
 import { spreads } from "../data/spreads";
 import { CardBack } from "../components/CardBack";
 import { WawaMascot } from "../components/WawaMascot";
+import { TodayCard } from "../components/TodayCard";
 
 export function Home() {
   return (
     <div>
+      <TodayCard />
       <HeroSection />
       <SpreadSection />
       <CtaBanner />

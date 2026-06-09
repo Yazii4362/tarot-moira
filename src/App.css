@@ -109,6 +109,258 @@
   color: var(--c-text-muted);
 }
 
+/* ============================================================
+   TODAY CARD — 첫 화면 최상단, 매일 방문 이유
+   크림 종이 + 골드 더블 보더 + 스카이 패널 (시안 톤)
+   ============================================================ */
+.today-card {
+  position: relative;
+  margin: 0 auto;
+  max-width: 880px;
+  padding: 4px;
+  border-radius: 22px;
+  background: linear-gradient(
+    180deg,
+    #f5d36a 0%,
+    #d9a93a 55%,
+    #a3781d 100%
+  );
+  box-shadow:
+    0 22px 48px rgba(33, 80, 130, 0.22),
+    0 0 0 1px rgba(217, 169, 58, 0.55),
+    0 0 28px rgba(245, 211, 106, 0.28);
+}
+
+.today-card__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(160px, 200px) 1fr;
+  gap: var(--sp-6);
+  align-items: center;
+  padding: var(--sp-6) var(--sp-8);
+  border-radius: 18px;
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      rgba(255, 233, 168, 0.45),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 0% 100%,
+      rgba(214, 240, 255, 0.55),
+      transparent 60%
+    ),
+    linear-gradient(180deg, #fcf2da 0%, #f5e7c2 100%);
+  overflow: hidden;
+}
+
+.today-card__inner::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(217, 169, 58, 0.35);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.today-card__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(0 18px 28px rgba(26, 58, 92, 0.18));
+}
+
+.today-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  min-width: 0;
+}
+
+.today-card__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: #8a6a25;
+  text-transform: uppercase;
+}
+
+.today-card__date {
+  font-weight: 700;
+  color: #5e4a18;
+}
+
+.today-card__sep {
+  opacity: 0.5;
+}
+
+.today-card__label {
+  color: #a3781d;
+}
+
+.today-card__stars {
+  font-size: 22px;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  color: #d9a93a;
+  text-shadow: 0 1px 0 rgba(255, 230, 150, 0.7);
+}
+
+.today-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4.2vw, 40px);
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  color: #1a3a5c;
+  margin: 0;
+}
+
+.today-card__rev {
+  font-size: 0.5em;
+  letter-spacing: 0.1em;
+  color: #a3781d;
+  font-family: var(--font-pixel);
+  vertical-align: middle;
+}
+
+.today-card__message {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: #1a3a5c;
+  white-space: pre-line;
+}
+
+.today-card__actions {
+  display: flex;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+  margin-top: var(--sp-2);
+}
+
+.today-card__btn {
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  padding: 10px 18px;
+  border-radius: var(--r-full);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+.today-card__btn--ghost {
+  background: rgba(255, 255, 255, 0.55);
+  color: #1a3a5c;
+  box-shadow: inset 0 0 0 1.5px rgba(217, 169, 58, 0.6);
+}
+
+.today-card__btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-1px);
+}
+
+.today-card__btn--primary {
+  background: linear-gradient(180deg, #f5d36a 0%, #d9a93a 100%);
+  color: #1a3a5c;
+  box-shadow:
+    0 6px 14px rgba(217, 169, 58, 0.4),
+    inset 0 1px 0 rgba(255, 245, 190, 0.7);
+}
+
+.today-card__btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 22px rgba(217, 169, 58, 0.55),
+    inset 0 1px 0 rgba(255, 245, 190, 0.9);
+}
+
+.today-card__detail {
+  overflow: hidden;
+  margin-top: var(--sp-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.today-card__voice {
+  border-radius: 14px;
+  padding: var(--sp-3) var(--sp-4);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(217, 169, 58, 0.28);
+}
+
+.today-card__voice--angel {
+  border-left: 3px solid #ffb347;
+}
+
+.today-card__voice--demon {
+  border-left: 3px solid #b97fe8;
+}
+
+.today-card__voice-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: #5e4a18;
+  margin-bottom: 6px;
+}
+
+.today-card__voice p {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #1a3a5c;
+}
+
+.today-card__keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.today-card__kw {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #6b9ab8;
+  background: rgba(214, 240, 255, 0.6);
+  padding: 4px 10px;
+  border-radius: var(--r-full);
+  border: 1px solid rgba(74, 175, 232, 0.22);
+}
+
+@media (max-width: 720px) {
+  .today-card__inner {
+    grid-template-columns: 1fr;
+    padding: var(--sp-5) var(--sp-5);
+    gap: var(--sp-4);
+  }
+  .today-card__visual {
+    margin: 0 auto;
+  }
+  .today-card__title {
+    font-size: 28px;
+  }
+  .today-card__stars {
+    font-size: 20px;
+  }
+  .today-card__message {
+    font-size: 15px;
+  }
+}
+
 /* ── HERO ── */
 .hero {
   text-align: center;
