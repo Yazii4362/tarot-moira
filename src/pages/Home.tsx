@@ -1,32 +1,42 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { categories } from "../data/categories";
-import { WawaMascot } from "../components/WawaMascot";
-import { WawaLogoMark } from "../components/WawaLogoMark";
 
 /**
- * Home — 와와타로 랜딩페이지
- * 5개 섹션 풀-스크롤 구조:
- *   1. Hero          : 큰 로고 + 마스코트 + 단일 CTA
- *   2. DualVoice     : 천사와와 vs 악마와와 두 시선
- *   3. Categories    : 4개 카테고리 IA 진입점
- *   4. HowItWorks    : 3-step 가이드
- *   5. FinalCTA      : 마지막 한 마디 + 바로 시작 CTA
- *
- * 섹션마다 충분한 vertical padding, 1 컨셉 = 1 섹션 원칙.
- * 자산은 추후 사용자 제공 이미지로 슬롯 교체 가능 구조.
+ * Home — 와와타로 랜딩페이지 (간소화 버전)
  */
 export function Home() {
   return (
-    <div className="home">
-      <HeroSection />
-      <DualVoiceSection />
-      <CategoriesSection />
-      <HowItWorksSection />
-      <FinalCtaSection />
+    <div style={{ padding: "40px", textAlign: "center" }}>
+      <h1>와와타로 🐕</h1>
+      <p>카드가 보여준 만큼만 말하겠습니다</p>
+      
+      <div style={{ marginTop: "40px" }}>
+        <h2>카테고리</h2>
+        <div style={{ display: "grid", gap: "20px", marginTop: "20px", maxWidth: "800px", margin: "20px auto" }}>
+          {categories.map((c) => (
+            <Link
+              key={c.id}
+              to={`/c/${c.id}`}
+              style={{
+                padding: "20px",
+                border: "2px solid #ddd",
+                borderRadius: "12px",
+                textDecoration: "none",
+                color: "inherit",
+                display: "block",
+              }}
+            >
+              <div style={{ fontSize: "40px", marginBottom: "10px" }}>{c.emoji}</div>
+              <h3>{c.name}</h3>
+              <p style={{ fontSize: "14px", color: "#666" }}>{c.tagline}</p>
+            </Link>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
+
 
 /* ============================================================
    1. HERO

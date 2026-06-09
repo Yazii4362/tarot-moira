@@ -29,10 +29,6 @@ export function Layout() {
         <div className="app-header__inner">
           <Link to="/" className="brand" aria-label="와와타로 홈으로">
             <WawaLogoMark className="brand__mark" size={40} />
-            <span className="brand__word">
-              <span className="brand__word-en">WAWATAROT</span>
-              <span className="brand__word-ko">와와타로</span>
-            </span>
           </Link>
 
           <button
@@ -51,23 +47,23 @@ export function Layout() {
             className={`nav ${menuOpen ? "is-open" : ""}`}
             aria-label="메인 메뉴"
           >
-            <NavLink to="/" end className="nav__link">
-              홈
-            </NavLink>
-            {categories
-              .filter((c) => c.id !== "today")
-              .map((c) => (
-                <NavLink
-                  key={c.id}
-                  to={`/c/${c.id}`}
-                  className={`nav__link nav__link--${c.accent}`}
-                >
-                  <span className="nav__dot" aria-hidden="true" />
-                  {c.name}
-                </NavLink>
-              ))}
+            {categories.map((c) => (
+              <NavLink
+                key={c.id}
+                to={`/c/${c.id}`}
+                className={`nav__link nav__link--${c.accent}`}
+              >
+                <span className="nav__emoji" aria-hidden="true">
+                  {c.emoji}
+                </span>
+                <span className="nav__text">{c.name}</span>
+              </NavLink>
+            ))}
             <NavLink to="/about" className="nav__link nav__link--about">
-              와와 소개
+              <span className="nav__emoji" aria-hidden="true">
+                ❔
+              </span>
+              <span className="nav__text">와와는?</span>
             </NavLink>
           </nav>
         </div>
