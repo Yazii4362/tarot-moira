@@ -820,13 +820,18 @@ const minorTexts: Record<Suit, MinorText[]> = {
 
 const SUITS: Suit[] = ["wands", "cups", "swords", "pentacles"];
 
-const majorCards: TarotCard[] = majorTexts.map((t, i) => ({
-  ...t,
-  id: `major_${pad(i)}`,
-  arcana: "major",
-  number: i,
-  image: `/images/major/major_${pad(i)}.jpg`,
-}));
+const majorPngNumbers = new Set([0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+
+const majorCards: TarotCard[] = majorTexts.map((t, i) => {
+  const ext = majorPngNumbers.has(i) ? "png" : "jpg";
+  return {
+    ...t,
+    id: `major_${pad(i)}`,
+    arcana: "major" as const,
+    number: i,
+    image: `/images/major/major_${pad(i)}.${ext}`,
+  };
+});
 
 const minorCards: TarotCard[] = SUITS.flatMap((suit) =>
   minorTexts[suit].map((t, i) => {

@@ -26,3 +26,12 @@ export function drawCards(
     reversed: allowReversed ? Math.random() < 0.5 : false,
   }));
 }
+
+export function buildPickPool(
+  spreadCount: number,
+  options?: { poolSize?: number; allowReversed?: boolean }
+): DrawnCard[] {
+  const poolSize =
+    options?.poolSize ?? Math.max(spreadCount + 4, Math.min(9, 78));
+  return drawCards(poolSize, { allowReversed: options?.allowReversed });
+}

@@ -1,41 +1,144 @@
+/* ============================================================
+   WAWATAROT — index.css  (Y2K Sky Edition · React port)
+   2005~2008 일본 Flash 치와와 팬사이트 + 툼레이더 로우폴리 3D 하늘
+   "카드가 보여준 만큼만 말하겠습니다."
+   공통 변수 · Reset · Typography · 하늘·구름 배경
+   ============================================================ */
+
+/* ── Pretendard Variable — 본문 ── */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css");
+
+/* ── DungGeunMo — 제목 (둥근모) ── */
+@font-face {
+  font-family: "DungGeunMo";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2107@1.1/DungGeunMo.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── NeoDunggeunmoPro — 소제목 (네오둥근모) ── */
+@font-face {
+  font-family: "NeoDunggeunmoPro";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2107@1.1/NeoDunggeunmoPro-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --bg-0: #0a0612;
-  --bg-1: #120a22;
-  --bg-2: #1c1130;
-  --surface: rgba(28, 17, 48, 0.65);
-  --surface-strong: rgba(28, 17, 48, 0.9);
-  --border: rgba(196, 167, 230, 0.18);
-  --border-strong: rgba(196, 167, 230, 0.35);
+  /* ── Brand Colors (Wawatarot · Coral Shrine) ──
+     - 50% 치와와월드 (코랄·살구·블러시)
+     - 30% 인터넷 밈 (밝은 핑크)
+     - 20% 수상한 동네 점집 (다크 와인 + 골드)
+     변수명은 호환을 위해 유지하되 값만 와와 톤으로 교체 */
+  --c-lavender: #fda4af; /* WAS lavender → 코랄 핑크 (메인) */
+  --c-lavender-deep: #e11d48; /* → 로즈 레드 (강조) */
+  --c-lavender-pale: #ffe4e6; /* → 블러시 페일 */
+  --c-pink: #fecdd3; /* → 살구 핑크 */
+  --c-pink-deep: #fb7185; /* → 코랄 레드 */
+  --c-pink-pale: #fff1f2; /* → 크림 핑크 */
+  --c-violet: #4a1023; /* → 다크 와인 (어두운 점집) */
+  --c-violet-mid: #831843; /* → 와인 미드 */
+  --c-mint: #fde6d3; /* → 살구 크림 (포인트) */
+  --c-mint-deep: #f59e0b; /* → 허니 골드 */
+  --c-gold: #fde68a; /* 그대로 — 골드 액센트 */
 
-  --text: #e7dcf2;
-  --text-soft: #b9a8d3;
-  --text-muted: #8c7ba8;
-  --text-h: #fbf6ff;
+  /* ── Wawa Aliases — 의미적 변수 (새 코드는 이걸 쓰는 걸 권장) ── */
+  --c-coral: #fda4af;
+  --c-coral-deep: #fb7185;
+  --c-rose: #f472b6;
+  --c-rose-deep: #e11d48;
+  --c-blush: #fecdd3;
+  --c-cream: #fff7ed;
+  --c-apricot: #fde6d3;
+  --c-wine: #4a1023;
+  --c-wine-mid: #831843;
+  --c-ink: #1f0710; /* 가장 어두운 점집 잉크 */
+  --c-honey: #f59e0b;
 
-  --gold: #e9c46a;
-  --gold-soft: #f3d488;
-  --violet: #b794f4;
-  --violet-strong: #d6b6ff;
-  --rose: #ff8fb1;
+  /* ── Backgrounds (점집 잉크 + 살짝 핑크 머금음) ── */
+  --c-bg: #1f0710;
+  --c-bg-2: #2a0e1a;
+  --c-bg-card: #4a1023;
+  --c-bg-section: #240914;
+  --c-surface: rgba(253, 164, 175, 0.08);
+  --c-surface-2: rgba(254, 205, 211, 0.08);
+  --c-glass: rgba(255, 245, 240, 0.07);
+  --c-glass-strong: rgba(255, 245, 240, 0.1);
+  --c-glass-border: rgba(253, 164, 175, 0.18);
 
-  --shadow-card:
-    0 18px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(196, 167, 230, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  --shadow-glow: 0 0 30px rgba(183, 148, 244, 0.35);
+  /* ── Text (따뜻한 크림 톤) ── */
+  --c-text: #fff5f0;
+  --c-text-sub: #fecdd3;
+  --c-text-muted: #c97b8c;
+  --c-text-dim: #831843;
 
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 22px;
+  /* ── Borders ── */
+  --c-border: rgba(253, 164, 175, 0.22);
+  --c-border-strong: rgba(253, 164, 175, 0.5);
 
-  --sans:
-    "Pretendard", "Noto Sans KR", system-ui, -apple-system, "Segoe UI", Roboto,
-    sans-serif;
-  --serif: "Cormorant Garamond", "Noto Serif KR", Georgia, serif;
+  /* ── Glows / Shadows ── */
+  --glow-lavender: 0 0 40px rgba(251, 113, 133, 0.4); /* coral glow */
+  --glow-pink: 0 0 40px rgba(244, 114, 182, 0.4);
+  --glow-mint: 0 0 30px rgba(253, 230, 138, 0.35); /* gold soft glow */
+  --shadow-float:
+    0 20px 60px rgba(74, 16, 35, 0.55), 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 8px 32px rgba(74, 16, 35, 0.45);
 
-  font-family: var(--sans);
-  color: var(--text);
-  font-size: 16px;
-  line-height: 1.6;
+  /* ── Typography ── */
+  --font-brand: "SacheonUniverse", "Interop", system-ui, sans-serif;
+  --font-display: "SacheonUniverse", "Interop", system-ui, sans-serif;
+  --font-serif: "Interop", system-ui, sans-serif;
+  --font-sans: "Interop", system-ui, sans-serif;
+
+  --fs-xs: 11px;
+  --fs-sm: 14px;
+  --fs-base: 16px;
+  --fs-md: 18px;
+  --fs-lg: 22px;
+  --fs-xl: 28px;
+  --fs-2xl: 36px;
+  --fs-3xl: 48px;
+  --fs-4xl: 64px;
+
+  --lh-tight: 1.2;
+  --lh-snug: 1.4;
+  --lh-normal: 1.65;
+  --lh-loose: 1.9;
+
+  /* ── Spacing ── */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 20px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+
+  /* ── Radius (Jelly: 둥글둥글) ── */
+  --r-sm: 8px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --r-2xl: 48px;
+  --r-full: 9999px;
+
+  /* ── Transitions ── */
+  --t-fast: 150ms ease;
+  --t-base: 280ms ease;
+  --t-slow: 500ms cubic-bezier(0.23, 1, 0.32, 1);
+
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  color: var(--c-text);
   color-scheme: dark;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -48,46 +151,60 @@
 html,
 body,
 #root {
-  height: 100%;
   margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   min-height: 100svh;
-  background:
-    radial-gradient(
-      ellipse at 20% 10%,
-      rgba(183, 148, 244, 0.18),
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse at 85% 0%,
-      rgba(255, 143, 177, 0.12),
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse at 50% 100%,
-      rgba(233, 196, 106, 0.1),
-      transparent 60%
-    ),
-    linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 60%, var(--bg-2) 100%);
-  background-attachment: fixed;
+  background: var(--c-bg);
+  color: var(--c-text);
+  overflow-x: hidden;
 }
 
+/* 별빛 노이즈 오버레이 */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
-  background-image:
-    radial-gradient(1px 1px at 12% 22%, rgba(255, 255, 255, 0.6), transparent 60%),
-    radial-gradient(1px 1px at 78% 14%, rgba(255, 255, 255, 0.45), transparent 60%),
-    radial-gradient(1.5px 1.5px at 35% 80%, rgba(255, 255, 255, 0.5), transparent 60%),
-    radial-gradient(1px 1px at 65% 60%, rgba(255, 255, 255, 0.35), transparent 60%),
-    radial-gradient(1px 1px at 92% 78%, rgba(255, 255, 255, 0.4), transparent 60%),
-    radial-gradient(1px 1px at 8% 90%, rgba(255, 255, 255, 0.3), transparent 60%);
-  opacity: 0.7;
   z-index: 0;
+  opacity: 0.4;
+}
+
+/* 분위기 글로우 (코랄/로즈/골드 라디얼 — 수상한 점집 등불) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(
+      ellipse at 18% 12%,
+      rgba(253, 164, 175, 0.2),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 85% 0%,
+      rgba(251, 113, 133, 0.15),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 50% 100%,
+      rgba(253, 230, 138, 0.12),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 100% 60%,
+      rgba(131, 24, 67, 0.18),
+      transparent 50%
+    );
 }
 
 #root {
@@ -100,57 +217,91 @@ body::before {
 
 h1,
 h2,
-h3 {
-  font-family: var(--serif);
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
   font-weight: 500;
-  color: var(--text-h);
-  letter-spacing: 0.01em;
+  line-height: var(--lh-tight);
+  color: var(--c-text);
   margin: 0;
 }
 
 h1 {
-  font-size: clamp(2.2rem, 4vw, 3.4rem);
-  line-height: 1.15;
+  font-size: clamp(var(--fs-2xl), 4vw, var(--fs-3xl));
+  letter-spacing: -0.01em;
 }
 
 h2 {
-  font-size: clamp(1.5rem, 2.4vw, 2rem);
-  line-height: 1.2;
+  font-size: clamp(var(--fs-xl), 3vw, var(--fs-2xl));
 }
 
 h3 {
-  font-size: 1.15rem;
+  font-size: var(--fs-lg);
 }
 
 p {
   margin: 0;
+  line-height: var(--lh-loose);
+  color: var(--c-text-sub);
 }
 
 a {
-  color: var(--violet-strong);
+  color: inherit;
   text-decoration: none;
 }
 
-button {
-  font-family: inherit;
-  cursor: pointer;
-  background: none;
-  border: none;
-  color: inherit;
-}
-
-button:focus-visible {
-  outline: 2px solid var(--violet);
-  outline-offset: 3px;
-  border-radius: 6px;
-}
-
-img {
+img,
+video,
+svg {
   display: block;
   max-width: 100%;
 }
 
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--c-coral);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
 ::selection {
-  background: rgba(183, 148, 244, 0.4);
-  color: #fff;
+  background: rgba(251, 113, 133, 0.4);
+  color: var(--c-text);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--c-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--c-wine-mid);
+  border-radius: var(--r-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-coral-deep);
 }

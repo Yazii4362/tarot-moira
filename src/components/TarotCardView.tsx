@@ -43,7 +43,11 @@ export function TarotCardView({
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.45, ease: "easeOut" }}
-      whileHover={interactive ? { y: -6 } : undefined}
+      whileHover={
+        interactive
+          ? { y: -8, filter: "drop-shadow(0 0 24px rgba(216,180,254,0.45))" }
+          : undefined
+      }
       whileTap={interactive ? { scale: 0.97 } : undefined}
       style={{
         width: dim.w,
@@ -71,10 +75,10 @@ export function TarotCardView({
             inset: 0,
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
-            borderRadius: 14,
+            borderRadius: 24,
             overflow: "hidden",
             boxShadow:
-              "0 18px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(196,167,230,0.12), inset 0 1px 0 rgba(255,255,255,0.05)",
+              "0 12px 40px rgba(168, 85, 247, 0.3), 0 0 0 1px rgba(216, 180, 254, 0.18), inset 0 1px 0 rgba(255,255,255,0.08)",
           }}
         >
           <CardBack />
@@ -86,12 +90,12 @@ export function TarotCardView({
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: `rotateY(180deg) ${reversed ? "rotate(180deg)" : ""}`,
-            borderRadius: 14,
+            borderRadius: 24,
             overflow: "hidden",
-            background: "#0a0420",
-            border: "1px solid rgba(233, 196, 106, 0.45)",
+            background: "#2d1254",
+            border: "1px solid rgba(216, 180, 254, 0.45)",
             boxShadow:
-              "0 18px 40px rgba(0,0,0,0.55), 0 0 0 1px rgba(196,167,230,0.12), 0 0 22px rgba(233, 196, 106, 0.18)",
+              "0 18px 50px rgba(168, 85, 247, 0.4), 0 0 0 1px rgba(216, 180, 254, 0.18), 0 0 24px rgba(255, 194, 226, 0.18)",
           }}
         >
           {drawn && (
