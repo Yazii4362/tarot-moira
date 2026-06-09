@@ -5,7 +5,12 @@ import { getSpread } from "../data/spreads";
 import type { DrawnCard } from "../utils/tarot";
 import { buildPickPool } from "../utils/tarot";
 import { TarotCardView } from "../components/TarotCardView";
+import { CardBack } from "../components/CardBack";
 import { buildIntensity, buildLucky } from "../utils/fortuneFlavors";
+import type { WawaMode } from "../data/voiceTexts";
+import { getVoice } from "../data/voiceTexts";
+
+type ResultView = WawaMode | "both";
 
 type Phase = "ask" | "shuffling" | "picking" | "revealing" | "done";
 
@@ -22,6 +27,8 @@ export function Reading() {
   const [pickedIdx, setPickedIdx] = useState<number[]>([]);
   const [cards, setCards] = useState<DrawnCard[]>([]);
   const [revealed, setRevealed] = useState<boolean[]>([]);
+  // null = 모드 선택 전, 그 외 = 선택된 결과 시점
+  const [resultView, setResultView] = useState<ResultView | null>(null);
 
   if (!spread) {
     return (
@@ -84,6 +91,7 @@ export function Reading() {
     setRevealed([]);
     setPool([]);
     setPickedIdx([]);
+    setResultView(null);
   };
 
   const reshuffle = () => {
@@ -91,6 +99,7 @@ export function Reading() {
     setRevealed([]);
     setPool([]);
     setPickedIdx([]);
+    setResultView(null);
     setPhase("shuffling");
     const drawn = buildPickPool(spread.count);
     setTimeout(() => {
@@ -217,11 +226,17 @@ export function Reading() {
               </div>
             )}
 
-            {phase === "done" && (
+            {phase === "done" && resultView === null && (
+              <ModeSelect onPick={(m) => setResultView(m)} />
+            )}
+
+            {phase === "done" && resultView !== null && (
               <ReadingResult
                 spread={spread}
                 cards={cards}
                 question={question}
+                view={resultView}
+                onChangeView={setResultView}
                 onReshuffle={reshuffle}
                 onReset={reset}
               />
@@ -271,7 +286,9 @@ function ShuffleStage() {
               delay: i * 0.04,
             }}
             style={{ zIndex: i }}
-          />
+          >
+            <CardBack />
+          </motion.div>
         ))}
       </div>
       <motion.p
@@ -364,7 +381,9 @@ function PickStage({
               }}
               aria-label={`카드 ${i + 1}`}
             >
-              <div className="pick-card__inner">✦</div>
+              <div className="pick-card__inner">
+                <CardBack />
+              </div>
             </motion.div>
           );
         })}
@@ -419,16 +438,82 @@ function SpreadBoard({
   );
 }
 
+function ModeSelect({ onPick }: { onPick: (m: ResultView) => void }) {
+  return (
+    <motion.section
+      className="mode-select"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, ease: "easeOut" }}
+    >
+      <header className="mode-select__head">
+        <span className="eyebrow">어떤 와와에게 물어볼까요?</span>
+        <h2>같은 카드, 다른 시선</h2>
+        <p>
+          😇 <strong>천사와와</strong>는 가능성을 봅니다 ·
+          <br />
+          😈 <strong>악마와와</strong>는 리스크를 봅니다 ·
+          <br />둘 다 진실의 한 조각이에요.
+        </p>
+      </header>
+
+      <div className="mode-select__grid">
+        <motion.button
+          type="button"
+          className="mode-card mode-card--angel"
+          onClick={() => onPick("angel")}
+          whileHover={{ y: -6, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <span className="mode-card__emoji">😇</span>
+          <span className="mode-card__name">천사와와</span>
+          <span className="mode-card__motto">가능성을 봄</span>
+          <span className="mode-card__hint">
+            "기회는 보여. 어떻게 쓰는지는 너에게 달렸어."
+          </span>
+        </motion.button>
+
+        <motion.button
+          type="button"
+          className="mode-card mode-card--demon"
+          onClick={() => onPick("demon")}
+          whileHover={{ y: -6, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <span className="mode-card__emoji">😈</span>
+          <span className="mode-card__name">악마와와</span>
+          <span className="mode-card__motto">리스크를 봄</span>
+          <span className="mode-card__hint">
+            "가능해. 같은 이유로 멀어질 수도 있어."
+          </span>
+        </motion.button>
+      </div>
+
+      <button
+        type="button"
+        className="mode-select__both"
+        onClick={() => onPick("both")}
+      >
+        ✨ 둘 다 보기
+      </button>
+    </motion.section>
+  );
+}
+
 function ReadingResult({
   spread,
   cards,
   question,
+  view,
+  onChangeView,
   onReshuffle,
   onReset,
 }: {
   spread: ReturnType<typeof getSpread> & object;
   cards: DrawnCard[];
   question: string;
+  view: ResultView;
+  onChangeView: (v: ResultView) => void;
   onReshuffle: () => void;
   onReset: () => void;
 }) {
@@ -452,12 +537,15 @@ function ReadingResult({
         {question && <p className="question">"{question}"</p>}
       </header>
 
+      <ViewToggle view={view} onChange={onChangeView} />
+
       <IntensityGauge intensity={intensity} />
 
       <div className="reading-card-list">
         {cards.map(({ card, reversed }, i) => {
           const keywords = reversed ? card.keywordsRev : card.keywords;
-          const meaning = reversed ? card.meaningRev : card.meaning;
+          const angelText = getVoice(card, "angel", reversed);
+          const demonText = getVoice(card, "demon", reversed);
           const pos = spread.positions[i];
           return (
             <motion.article
@@ -513,7 +601,11 @@ function ReadingResult({
                     </motion.span>
                   ))}
                 </motion.div>
-                <p className="meaning">{meaning}</p>
+                <CardVoiceBlock
+                  view={view}
+                  angel={angelText}
+                  demon={demonText}
+                />
               </div>
             </motion.article>
           );
@@ -573,6 +665,80 @@ function IntensityGauge({
         />
       </div>
     </motion.div>
+  );
+}
+
+function ViewToggle({
+  view,
+  onChange,
+}: {
+  view: ResultView;
+  onChange: (v: ResultView) => void;
+}) {
+  const items: { value: ResultView; emoji: string; label: string }[] = [
+    { value: "angel", emoji: "😇", label: "천사와와" },
+    { value: "demon", emoji: "😈", label: "악마와와" },
+    { value: "both", emoji: "✨", label: "둘 다" },
+  ];
+
+  return (
+    <div className="view-toggle" role="tablist" aria-label="해석 시선 선택">
+      {items.map((it) => {
+        const active = view === it.value;
+        return (
+          <button
+            key={it.value}
+            type="button"
+            role="tab"
+            aria-selected={active}
+            className={`view-toggle__btn ${active ? "is-active" : ""} view-toggle__btn--${it.value}`}
+            onClick={() => onChange(it.value)}
+          >
+            <span className="view-toggle__emoji">{it.emoji}</span>
+            <span>{it.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function CardVoiceBlock({
+  view,
+  angel,
+  demon,
+}: {
+  view: ResultView;
+  angel: string;
+  demon: string;
+}) {
+  if (view === "angel") {
+    return (
+      <p className="voice voice--angel">
+        <span className="voice__tag">😇 천사와와</span>
+        <span className="voice__text">{angel}</span>
+      </p>
+    );
+  }
+  if (view === "demon") {
+    return (
+      <p className="voice voice--demon">
+        <span className="voice__tag">😈 악마와와</span>
+        <span className="voice__text">{demon}</span>
+      </p>
+    );
+  }
+  return (
+    <div className="voice-pair">
+      <p className="voice voice--angel">
+        <span className="voice__tag">😇 천사와와</span>
+        <span className="voice__text">{angel}</span>
+      </p>
+      <p className="voice voice--demon">
+        <span className="voice__tag">😈 악마와와</span>
+        <span className="voice__text">{demon}</span>
+      </p>
+    </div>
   );
 }
 

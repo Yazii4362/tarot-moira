@@ -2,6 +2,11 @@ interface CardBackProps {
   className?: string;
 }
 
+/**
+ * 와와타로 공식 카드 뒷면 — 시안 기반
+ * 골드 더블 테두리 + 크림 베젤 + 파란 하늘 패널
+ * 픽셀 별 + 로우폴리 구름 + 가운데 월계관 쓴 치와와 머리
+ */
 export function CardBack({ className }: CardBackProps) {
   return (
     <svg
@@ -13,151 +18,310 @@ export function CardBack({ className }: CardBackProps) {
       style={{ width: "100%", height: "100%", display: "block" }}
     >
       <defs>
-        {/* 와와 톤: 살구→코랄→다크 와인 */}
-        <linearGradient id="cb-bg" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#fecdd3" />
-          <stop offset="55%" stopColor="#fb7185" />
-          <stop offset="100%" stopColor="#4a1023" />
+        {/* 카드 종이 — 크림 베이지 */}
+        <linearGradient id="cb-paper" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#fcf2da" />
+          <stop offset="100%" stopColor="#f0e2bd" />
         </linearGradient>
-        <radialGradient id="cb-glow" cx="50%" cy="35%" r="60%">
-          <stop offset="0%" stopColor="rgba(253, 230, 138, 0.55)" />
-          <stop offset="60%" stopColor="rgba(254, 205, 211, 0.18)" />
-          <stop offset="100%" stopColor="rgba(254, 205, 211, 0)" />
+        {/* 골드 그라디언트 (테두리용) */}
+        <linearGradient id="cb-gold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#f5d36a" />
+          <stop offset="50%" stopColor="#d9a93a" />
+          <stop offset="100%" stopColor="#a3781d" />
+        </linearGradient>
+        {/* 안쪽 하늘 패널 */}
+        <linearGradient id="cb-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#7ec5e8" />
+          <stop offset="55%" stopColor="#5aaedd" />
+          <stop offset="100%" stopColor="#4197cd" />
+        </linearGradient>
+        {/* 구름 (라디얼 흰색) */}
+        <radialGradient id="cb-cloud" cx="50%" cy="35%" r="70%">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="55%" stopColor="#f0f6fa" />
+          <stop offset="100%" stopColor="#bccbd6" />
         </radialGradient>
-        <radialGradient id="cb-mark" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="rgba(255, 247, 237, 0.95)" />
-          <stop offset="100%" stopColor="rgba(253, 230, 138, 0.9)" />
-        </radialGradient>
+        {/* 와와 털 그라디언트 */}
+        <linearGradient id="cb-fur" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#ecca94" />
+          <stop offset="60%" stopColor="#d4a268" />
+          <stop offset="100%" stopColor="#a87a44" />
+        </linearGradient>
+        {/* 월계관 그린 */}
+        <linearGradient id="cb-laurel" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#7d9b4a" />
+          <stop offset="100%" stopColor="#4f6a2a" />
+        </linearGradient>
       </defs>
 
-      <rect width="200" height="320" rx="24" ry="24" fill="url(#cb-bg)" />
+      {/* === 카드 베이스 (크림 종이) === */}
+      <rect width="200" height="320" rx="18" ry="18" fill="url(#cb-paper)" />
 
-      {/* 외곽 골드 라인 */}
+      {/* === 골드 외곽 라인 === */}
       <rect
-        x="6"
-        y="6"
-        width="188"
-        height="308"
-        rx="20"
-        ry="20"
+        x="3"
+        y="3"
+        width="194"
+        height="314"
+        rx="15"
+        ry="15"
         fill="none"
-        stroke="rgba(253, 230, 138, 0.7)"
-        strokeWidth="1"
+        stroke="url(#cb-gold)"
+        strokeWidth="1.6"
       />
+
+      {/* === 골드 두꺼운 프레임 === */}
       <rect
-        x="14"
+        x="10"
         y="14"
-        width="172"
+        width="180"
         height="292"
-        rx="16"
-        ry="16"
+        rx="6"
+        ry="6"
         fill="none"
-        stroke="rgba(255, 247, 237, 0.5)"
-        strokeWidth="0.7"
+        stroke="url(#cb-gold)"
+        strokeWidth="3"
+      />
+      {/* 골드 프레임 안쪽 얇은 라인 */}
+      <rect
+        x="13.5"
+        y="17.5"
+        width="173"
+        height="285"
+        rx="4"
+        ry="4"
+        fill="none"
+        stroke="rgba(255, 230, 150, 0.8)"
+        strokeWidth="0.6"
       />
 
-      {/* 중앙 글로우 */}
-      <rect width="200" height="320" rx="24" ry="24" fill="url(#cb-glow)" />
+      {/* === 하늘 패널 === */}
+      <rect x="15" y="19" width="170" height="282" rx="3" fill="url(#cb-sky)" />
 
-      {/* 점성 모티프 — 와와 양각 (별 + 동심원) */}
-      <g
-        transform="translate(100 150)"
-        stroke="rgba(255, 247, 237, 0.78)"
-        fill="none"
-        strokeWidth="1"
-      >
-        <circle r="46" />
-        <circle r="34" opacity="0.7" />
-        <circle r="22" opacity="0.5" />
-        <g strokeWidth="0.8" opacity="0.85">
-          <line x1="0" y1="-52" x2="0" y2="52" />
-          <line x1="-52" y1="0" x2="52" y2="0" />
-          <line x1="-37" y1="-37" x2="37" y2="37" />
-          <line x1="-37" y1="37" x2="37" y2="-37" />
+      {/* === 픽셀 별들 (4점 별 + 작은 점) === */}
+      <g fill="#ffffff">
+        {/* 4점 별 (크기 큰 것들) */}
+        <g>
+          {/* 좌상 */}
+          <path d="M 38 50 L 40 56 L 46 58 L 40 60 L 38 66 L 36 60 L 30 58 L 36 56 Z" />
+          {/* 우상 */}
+          <path d="M 162 60 L 164 66 L 170 68 L 164 70 L 162 76 L 160 70 L 154 68 L 160 66 Z" />
+          {/* 좌중 */}
+          <path d="M 30 130 L 31.5 134 L 35.5 135 L 31.5 136 L 30 140 L 28.5 136 L 24.5 135 L 28.5 134 Z" />
+          {/* 우중 */}
+          <path d="M 168 200 L 169.5 204 L 173.5 205 L 169.5 206 L 168 210 L 166.5 206 L 162.5 205 L 166.5 204 Z" />
+          {/* 하단 좌 */}
+          <path d="M 50 270 L 51.5 274 L 55.5 275 L 51.5 276 L 50 280 L 48.5 276 L 44.5 275 L 48.5 274 Z" />
+          {/* 하단 우 */}
+          <path d="M 154 282 L 155.5 286 L 159.5 287 L 155.5 288 L 154 292 L 152.5 288 L 148.5 287 L 152.5 286 Z" />
+          {/* 가운데 위 (작게) */}
+          <path d="M 100 38 L 101 41 L 104 42 L 101 43 L 100 46 L 99 43 L 96 42 L 99 41 Z" />
         </g>
-        <circle r="7" fill="url(#cb-mark)" stroke="none" />
-        <g fill="rgba(253, 230, 138, 0.95)" stroke="none">
-          <circle cx="0" cy="-52" r="2.2" />
-          <circle cx="0" cy="52" r="2.2" />
-          <circle cx="-52" cy="0" r="2.2" />
-          <circle cx="52" cy="0" r="2.2" />
-          <circle cx="-37" cy="-37" r="1.5" />
-          <circle cx="37" cy="37" r="1.5" />
-          <circle cx="-37" cy="37" r="1.5" />
-          <circle cx="37" cy="-37" r="1.5" />
+        {/* 작은 점 별 */}
+        <g opacity="0.95">
+          <circle cx="55" cy="80" r="0.9" />
+          <circle cx="148" cy="38" r="0.7" />
+          <circle cx="80" cy="80" r="0.6" />
+          <circle cx="120" cy="58" r="0.8" />
+          <circle cx="178" cy="120" r="0.7" />
+          <circle cx="22" cy="170" r="0.6" />
+          <circle cx="180" cy="160" r="0.5" />
+          <circle cx="35" cy="220" r="0.6" />
+          <circle cx="100" cy="290" r="0.5" />
+          <circle cx="170" cy="240" r="0.55" />
+          <circle cx="80" cy="265" r="0.5" />
         </g>
       </g>
 
-      {/* 와와 마스코트 — 작은 악마 치와와 실루엣 (중앙 하단) */}
-      <g transform="translate(100 232)" opacity="0.92">
-        {/* 작은 뿔 */}
-        <path
-          d="M -10 -20 L -7 -28 L -3 -22 Z"
-          fill="rgba(253, 230, 138, 0.95)"
-        />
-        <path
-          d="M 10 -20 L 7 -28 L 3 -22 Z"
-          fill="rgba(253, 230, 138, 0.95)"
-        />
-        {/* 머리 */}
+      {/* === 로우폴리 구름들 (외곽선 없이 부드럽게) === */}
+      <g fill="url(#cb-cloud)">
+        {/* 좌상단 구름 */}
+        <ellipse cx="44" cy="92" rx="20" ry="11" />
+        <ellipse cx="62" cy="86" rx="16" ry="10" />
+        <ellipse cx="76" cy="92" rx="13" ry="9" />
+        <ellipse cx="58" cy="80" rx="11" ry="7" />
+        {/* 우상단 구름 */}
+        <ellipse cx="148" cy="108" rx="18" ry="10" />
+        <ellipse cx="162" cy="104" rx="14" ry="9" />
+        <ellipse cx="135" cy="112" rx="12" ry="8" />
+        {/* 좌하단 구름 */}
+        <ellipse cx="42" cy="248" rx="18" ry="10" />
+        <ellipse cx="58" cy="244" rx="14" ry="9" />
+        <ellipse cx="72" cy="250" rx="12" ry="8" />
+        {/* 우하단 구름 */}
+        <ellipse cx="158" cy="234" rx="20" ry="11" />
+        <ellipse cx="140" cy="238" rx="13" ry="9" />
+        <ellipse cx="172" cy="240" rx="11" ry="7" />
+      </g>
+
+      {/* === 가운데 와와 (월계관 쓴 머리) === */}
+      <g transform="translate(100 165)">
+        {/* 머리 살짝 그림자 */}
         <ellipse
           cx="0"
-          cy="-10"
-          rx="13"
-          ry="12"
-          fill="rgba(255, 247, 237, 0.95)"
+          cy="3"
+          rx="32"
+          ry="29"
+          fill="rgba(20, 50, 80, 0.18)"
         />
-        {/* 귀 */}
+        {/* 머리 본체 */}
+        <ellipse cx="0" cy="0" rx="30" ry="28" fill="url(#cb-fur)" />
+        {/* 머리 위 하이라이트 */}
+        <ellipse
+          cx="-5"
+          cy="-15"
+          rx="14"
+          ry="6"
+          fill="#f4d9a6"
+          opacity="0.7"
+        />
+        {/* 귀 좌 */}
+        <path d="M -25 -16 L -36 -42 L -10 -22 Z" fill="url(#cb-fur)" />
+        <path d="M -22 -18 L -29 -32 L -15 -22 Z" fill="#f4a8c4" opacity="0.85" />
+        {/* 귀 우 */}
+        <path d="M 25 -16 L 36 -42 L 10 -22 Z" fill="url(#cb-fur)" />
+        <path d="M 22 -18 L 29 -32 L 15 -22 Z" fill="#f4a8c4" opacity="0.85" />
+
+        {/* 입 주변 흰 무늬 */}
         <path
-          d="M -13 -16 L -19 -8 L -10 -6 Z"
-          fill="rgba(255, 247, 237, 0.92)"
+          d="M -16 8
+             Q -10 24 0 18
+             Q 10 24 16 8
+             Q 6 14 0 14
+             Q -6 14 -16 8 Z"
+          fill="#fff8e7"
         />
-        <path
-          d="M 13 -16 L 19 -8 L 10 -6 Z"
-          fill="rgba(255, 247, 237, 0.92)"
-        />
-        {/* 눈 */}
-        <circle cx="-4.5" cy="-11" r="1.6" fill="#1f0710" />
-        <circle cx="4.5" cy="-11" r="1.6" fill="#1f0710" />
-        <circle cx="-4.5" cy="-11.5" r="0.5" fill="rgba(255,247,237,0.9)" />
-        <circle cx="4.5" cy="-11.5" r="0.5" fill="rgba(255,247,237,0.9)" />
+
+        {/* 눈 (큰 눈망울 + 하이라이트) */}
+        <ellipse cx="-9" cy="-2" rx="5" ry="5.5" fill="#1a1a2e" />
+        <circle cx="-9" cy="-2" r="3.8" fill="#0a0a1f" />
+        <circle cx="-7.5" cy="-4" r="1.6" fill="#ffffff" />
+        <circle cx="-10.5" cy="0.5" r="0.7" fill="rgba(255,255,255,0.55)" />
+
+        <ellipse cx="9" cy="-2" rx="5" ry="5.5" fill="#1a1a2e" />
+        <circle cx="9" cy="-2" r="3.8" fill="#0a0a1f" />
+        <circle cx="10.5" cy="-4" r="1.6" fill="#ffffff" />
+        <circle cx="7.5" cy="0.5" r="0.7" fill="rgba(255,255,255,0.55)" />
+
         {/* 코 */}
-        <ellipse cx="0" cy="-6" rx="1.4" ry="1" fill="#1f0710" />
-        {/* 미소 */}
-        <path
-          d="M -3 -3 Q 0 -1 3 -3"
-          fill="none"
-          stroke="#1f0710"
-          strokeWidth="0.8"
-          strokeLinecap="round"
+        <ellipse cx="0" cy="11" rx="3.2" ry="2.4" fill="#1a1a2e" />
+        <ellipse
+          cx="-1"
+          cy="10"
+          rx="1.1"
+          ry="0.7"
+          fill="rgba(255,255,255,0.45)"
         />
+
+        {/* 입 (단호한 한 일자) */}
+        <path
+          d="M -5 18 L 5 18"
+          stroke="#1a1a2e"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          fill="none"
+        />
+
+        {/* === 월계관 (좌우 잎사귀 V자) === */}
+        {/* 좌측 잎 */}
+        <g transform="translate(-2 -28)">
+          {/* 메인 잎 줄기 */}
+          <path
+            d="M 0 0 Q -16 -2 -28 -8"
+            stroke="url(#cb-laurel)"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+          />
+          {/* 잎사귀들 */}
+          <ellipse
+            cx="-7"
+            cy="-3"
+            rx="4"
+            ry="2.2"
+            fill="url(#cb-laurel)"
+            transform="rotate(-15 -7 -3)"
+          />
+          <ellipse
+            cx="-14"
+            cy="-5"
+            rx="4.5"
+            ry="2.3"
+            fill="url(#cb-laurel)"
+            transform="rotate(-25 -14 -5)"
+          />
+          <ellipse
+            cx="-21"
+            cy="-7"
+            rx="4"
+            ry="2"
+            fill="url(#cb-laurel)"
+            transform="rotate(-35 -21 -7)"
+          />
+          <ellipse
+            cx="-26"
+            cy="-9"
+            rx="3.5"
+            ry="1.8"
+            fill="url(#cb-laurel)"
+            transform="rotate(-45 -26 -9)"
+          />
+        </g>
+        {/* 우측 잎 */}
+        <g transform="translate(2 -28)">
+          <path
+            d="M 0 0 Q 16 -2 28 -8"
+            stroke="url(#cb-laurel)"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <ellipse
+            cx="7"
+            cy="-3"
+            rx="4"
+            ry="2.2"
+            fill="url(#cb-laurel)"
+            transform="rotate(15 7 -3)"
+          />
+          <ellipse
+            cx="14"
+            cy="-5"
+            rx="4.5"
+            ry="2.3"
+            fill="url(#cb-laurel)"
+            transform="rotate(25 14 -5)"
+          />
+          <ellipse
+            cx="21"
+            cy="-7"
+            rx="4"
+            ry="2"
+            fill="url(#cb-laurel)"
+            transform="rotate(35 21 -7)"
+          />
+          <ellipse
+            cx="26"
+            cy="-9"
+            rx="3.5"
+            ry="1.8"
+            fill="url(#cb-laurel)"
+            transform="rotate(45 26 -9)"
+          />
+        </g>
+        {/* 월계관 가운데 작은 골드 보석 */}
+        <circle cx="0" cy="-30" r="2" fill="url(#cb-gold)" />
       </g>
 
-      {/* 별빛 */}
-      <g fill="rgba(255, 247, 237, 0.9)">
-        <circle cx="40" cy="60" r="0.9" />
-        <circle cx="160" cy="80" r="0.7" />
-        <circle cx="55" cy="240" r="0.8" />
-        <circle cx="150" cy="260" r="1" />
-        <circle cx="100" cy="38" r="0.6" />
-        <circle cx="100" cy="282" r="0.6" />
-        <circle cx="30" cy="160" r="0.5" />
-        <circle cx="170" cy="160" r="0.5" />
-        <circle cx="78" cy="100" r="0.45" />
-        <circle cx="124" cy="120" r="0.5" />
-        <circle cx="68" cy="220" r="0.55" />
-        <circle cx="138" cy="210" r="0.45" />
-      </g>
-
-      {/* 하단 브랜드 마크 */}
+      {/* === 하단 워드마크 === */}
       <text
         x="100"
-        y="298"
+        y="296"
         textAnchor="middle"
-        fontFamily="'SacheonUniverse', serif"
+        fontFamily="'DungGeunMo', 'NeoDunggeunmoPro', monospace"
         fontSize="9"
         letterSpacing="3"
-        fill="rgba(255, 247, 237, 0.78)"
+        fill="rgba(255, 247, 220, 0.92)"
       >
         WAWATAROT
       </text>

@@ -1,10 +1,10 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
-import { StarField } from "./StarField";
+import { CloudField } from "./CloudField";
 
 export function Layout() {
   return (
     <div className="app-shell">
-      <StarField count={28} />
+      <CloudField count={7} />
       <header className="app-header">
         <Link to="/" className="brand" aria-label="홈으로">
           <span className="brand-mark" aria-hidden="true">

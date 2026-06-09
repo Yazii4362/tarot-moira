@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { spreads } from "../data/spreads";
 import { CardBack } from "../components/CardBack";
+import { WawaMascot } from "../components/WawaMascot";
 
 export function Home() {
   return (
@@ -46,7 +47,7 @@ function HeroSection() {
         <span className="hero__orb hero__orb--c" />
       </div>
 
-      <div className="hero__floating" aria-hidden="true">
+      <div className="hero__stage" aria-hidden="true">
         <motion.div
           className="hero__floating-card hero__floating-card--left"
           initial={{ opacity: 0, x: -40, rotate: -28 }}
@@ -65,17 +66,24 @@ function HeroSection() {
         >
           <CardBack />
         </motion.div>
+
         <motion.div
-          className="hero__floating-card hero__floating-card--center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: [0, -14, 0] }}
+          className="hero__mascot"
+          initial={{ opacity: 0, y: 40, scale: 0.85 }}
+          animate={{
+            opacity: 1,
+            y: [0, -12, 0],
+            scale: 1,
+          }}
           transition={{
-            opacity: { duration: 1, delay: 0.15, ease: "easeOut" },
-            y: { duration: 7, repeat: Infinity, ease: "easeInOut" },
+            opacity: { duration: 0.9, delay: 0.15, ease: "easeOut" },
+            scale: { duration: 0.9, delay: 0.15, ease: "easeOut" },
+            y: { duration: 4.5, repeat: Infinity, ease: "easeInOut" },
           }}
         >
-          <CardBack />
+          <WawaMascot />
         </motion.div>
+
         <motion.div
           className="hero__floating-card hero__floating-card--right"
           initial={{ opacity: 0, x: 40, rotate: 28 }}

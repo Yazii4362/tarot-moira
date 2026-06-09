@@ -45,7 +45,10 @@ export function TarotCardView({
       transition={{ delay, duration: 0.45, ease: "easeOut" }}
       whileHover={
         interactive
-          ? { y: -8, filter: "drop-shadow(0 0 24px rgba(216,180,254,0.45))" }
+          ? {
+              y: -8,
+              filter: "drop-shadow(0 0 24px rgba(245, 211, 106, 0.55))",
+            }
           : undefined
       }
       whileTap={interactive ? { scale: 0.97 } : undefined}
@@ -69,20 +72,22 @@ export function TarotCardView({
           transformStyle: "preserve-3d",
         }}
       >
+        {/* 뒷면 */}
         <div
           style={{
             position: "absolute",
             inset: 0,
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
-            borderRadius: 24,
+            borderRadius: 18,
             overflow: "hidden",
             boxShadow:
-              "0 12px 40px rgba(168, 85, 247, 0.3), 0 0 0 1px rgba(216, 180, 254, 0.18), inset 0 1px 0 rgba(255,255,255,0.08)",
+              "0 14px 36px rgba(33, 80, 130, 0.32), 0 0 0 1px rgba(217, 169, 58, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.18)",
           }}
         >
           <CardBack />
         </div>
+        {/* 앞면 — 사용자 카드 일러스트 */}
         <div
           style={{
             position: "absolute",
@@ -90,12 +95,11 @@ export function TarotCardView({
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
             transform: `rotateY(180deg) ${reversed ? "rotate(180deg)" : ""}`,
-            borderRadius: 24,
+            borderRadius: 18,
             overflow: "hidden",
-            background: "#2d1254",
-            border: "1px solid rgba(216, 180, 254, 0.45)",
+            background: "#fcf2da",
             boxShadow:
-              "0 18px 50px rgba(168, 85, 247, 0.4), 0 0 0 1px rgba(216, 180, 254, 0.18), 0 0 24px rgba(255, 194, 226, 0.18)",
+              "0 18px 44px rgba(33, 80, 130, 0.32), 0 0 0 1.5px rgba(217, 169, 58, 0.55), inset 0 0 0 1px rgba(255, 230, 150, 0.6)",
           }}
         >
           {drawn && (

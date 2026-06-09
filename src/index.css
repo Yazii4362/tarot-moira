@@ -29,70 +29,86 @@
 }
 
 :root {
-  /* ── Brand Colors (Wawatarot · Coral Shrine) ──
-     - 50% 치와와월드 (코랄·살구·블러시)
-     - 30% 인터넷 밈 (밝은 핑크)
-     - 20% 수상한 동네 점집 (다크 와인 + 골드)
-     변수명은 호환을 위해 유지하되 값만 와와 톤으로 교체 */
-  --c-lavender: #fda4af; /* WAS lavender → 코랄 핑크 (메인) */
-  --c-lavender-deep: #e11d48; /* → 로즈 레드 (강조) */
-  --c-lavender-pale: #ffe4e6; /* → 블러시 페일 */
-  --c-pink: #fecdd3; /* → 살구 핑크 */
-  --c-pink-deep: #fb7185; /* → 코랄 레드 */
-  --c-pink-pale: #fff1f2; /* → 크림 핑크 */
-  --c-violet: #4a1023; /* → 다크 와인 (어두운 점집) */
-  --c-violet-mid: #831843; /* → 와인 미드 */
-  --c-mint: #fde6d3; /* → 살구 크림 (포인트) */
-  --c-mint-deep: #f59e0b; /* → 허니 골드 */
-  --c-gold: #fde68a; /* 그대로 — 골드 액센트 */
+  /* ── Brand Colors (Wawatarot · Y2K Sky Edition) ──
+     2005~2008 Flash 치와와 팬사이트 + 툼레이더 로우폴리 3D 하늘
+     변수명은 호환을 위해 유지하되 값만 라이트 하늘 톤으로 교체 */
+  --c-lavender: #4aafe8; /* WAS coral → 스카이 딥 (메인 강조) */
+  --c-lavender-deep: #2196f3; /* → primary 블루 */
+  --c-lavender-pale: #d6f0ff; /* → 맑은 하늘 */
+  --c-pink: #ff85c2; /* → 튜투 핑크 */
+  --c-pink-deep: #ff5fae; /* → 핫 핑크 */
+  --c-pink-pale: #ffe4f2; /* → 페일 핑크 */
+  --c-violet: #1a3a5c; /* → 짙은 네이비 (텍스트/그림자용) */
+  --c-violet-mid: #3a6a8c; /* → 미드 네이비 */
+  --c-mint: #eaf6ff; /* → 구름색 */
+  --c-mint-deep: #87ceeb; /* → 스카이 미드 */
+  --c-gold: #ffb347; /* → 치와와 털색 (포인트 오렌지) */
 
-  /* ── Wawa Aliases — 의미적 변수 (새 코드는 이걸 쓰는 걸 권장) ── */
-  --c-coral: #fda4af;
-  --c-coral-deep: #fb7185;
-  --c-rose: #f472b6;
-  --c-rose-deep: #e11d48;
-  --c-blush: #fecdd3;
-  --c-cream: #fff7ed;
-  --c-apricot: #fde6d3;
-  --c-wine: #4a1023;
-  --c-wine-mid: #831843;
-  --c-ink: #1f0710; /* 가장 어두운 점집 잉크 */
-  --c-honey: #f59e0b;
+  /* ── Wawa Y2K Sky Aliases — 의미적 변수 (새 코드는 이걸 쓰는 걸 권장) ── */
+  --color-bg: #d6f0ff;
+  --color-surface: #ffffff;
+  --color-sky: #d6f0ff;
+  --color-sky-mid: #87ceeb;
+  --color-sky-deep: #4aafe8;
+  --color-cloud: #eaf6ff;
+  --color-primary: #2196f3;
+  --color-accent: #ffb347; /* 치와와 털색 */
+  --color-pink: #ff85c2;
+  --color-purple: #b97fe8;
+  --color-text: #1a3a5c;
+  --color-muted: #6b9ab8;
 
-  /* ── Backgrounds (점집 잉크 + 살짝 핑크 머금음) ── */
-  --c-bg: #1f0710;
-  --c-bg-2: #2a0e1a;
-  --c-bg-card: #4a1023;
-  --c-bg-section: #240914;
-  --c-surface: rgba(253, 164, 175, 0.08);
-  --c-surface-2: rgba(254, 205, 211, 0.08);
-  --c-glass: rgba(255, 245, 240, 0.07);
-  --c-glass-strong: rgba(255, 245, 240, 0.1);
-  --c-glass-border: rgba(253, 164, 175, 0.18);
+  /* ── Legacy aliases — 기존 코드(brand-mark 등)가 참조하는 변수명 호환 ── */
+  --c-coral: var(--color-sky-deep); /* 메인 강조 = 스카이 딥 */
+  --c-coral-deep: var(--color-primary);
+  --c-rose: var(--color-pink);
+  --c-rose-deep: var(--color-pink); /* 핫핑크 */
+  --c-blush: var(--color-cloud);
+  --c-cream: #fff7e6;
+  --c-apricot: var(--color-accent);
+  --c-wine: var(--color-text); /* 어두운 그림자 자리 = 네이비 */
+  --c-wine-mid: var(--color-primary);
+  --c-ink: var(--color-text);
+  --c-honey: var(--color-accent);
 
-  /* ── Text (따뜻한 크림 톤) ── */
-  --c-text: #fff5f0;
-  --c-text-sub: #fecdd3;
-  --c-text-muted: #c97b8c;
-  --c-text-dim: #831843;
+  /* ── Backgrounds (라이트 모드) ── */
+  --c-bg: #d6f0ff;
+  --c-bg-2: #c8e8f8;
+  --c-bg-card: #ffffff;
+  --c-bg-section: #eaf6ff;
+  --c-surface: rgba(255, 255, 255, 0.7);
+  --c-surface-2: rgba(234, 246, 255, 0.85);
+  --c-glass: rgba(255, 255, 255, 0.78);
+  --c-glass-strong: rgba(255, 255, 255, 0.92);
+  --c-glass-border: rgba(74, 175, 232, 0.25);
+
+  /* ── Text (네이비 톤) ── */
+  --c-text: #1a3a5c;
+  --c-text-sub: #3a6a8c;
+  --c-text-muted: #6b9ab8;
+  --c-text-dim: #2196f3;
 
   /* ── Borders ── */
-  --c-border: rgba(253, 164, 175, 0.22);
-  --c-border-strong: rgba(253, 164, 175, 0.5);
+  --c-border: rgba(74, 175, 232, 0.28);
+  --c-border-strong: rgba(33, 150, 243, 0.55);
 
-  /* ── Glows / Shadows ── */
-  --glow-lavender: 0 0 40px rgba(251, 113, 133, 0.4); /* coral glow */
-  --glow-pink: 0 0 40px rgba(244, 114, 182, 0.4);
-  --glow-mint: 0 0 30px rgba(253, 230, 138, 0.35); /* gold soft glow */
+  /* ── Glows / Shadows (소프트 라이트) ── */
+  --glow-lavender: 0 0 40px rgba(74, 175, 232, 0.45); /* sky glow */
+  --glow-pink: 0 0 40px rgba(255, 133, 194, 0.4);
+  --glow-mint: 0 0 30px rgba(255, 179, 71, 0.4); /* warm chihuahua glow */
   --shadow-float:
-    0 20px 60px rgba(74, 16, 35, 0.55), 0 4px 16px rgba(0, 0, 0, 0.35);
-  --shadow-card: 0 8px 32px rgba(74, 16, 35, 0.45);
+    0 20px 60px rgba(33, 150, 243, 0.22), 0 4px 16px rgba(26, 58, 92, 0.12);
+  --shadow-card: 0 8px 32px rgba(33, 150, 243, 0.18);
 
-  /* ── Typography ── */
-  --font-brand: "SacheonUniverse", "Interop", system-ui, sans-serif;
-  --font-display: "SacheonUniverse", "Interop", system-ui, sans-serif;
-  --font-serif: "Interop", system-ui, sans-serif;
-  --font-sans: "Interop", system-ui, sans-serif;
+  /* ── Typography (Y2K Sky · 둥근모 + Pretendard) ── */
+  --font-brand: "DungGeunMo", "NeoDunggeunmoPro", "Pretendard Variable",
+    system-ui, sans-serif;
+  --font-display: "DungGeunMo", "NeoDunggeunmoPro", "Pretendard Variable",
+    system-ui, sans-serif;
+  --font-pixel: "NeoDunggeunmoPro", "DungGeunMo", "Pretendard Variable",
+    system-ui, sans-serif;
+  --font-serif: "Pretendard Variable", "Pretendard", system-ui, sans-serif;
+  --font-sans: "Pretendard Variable", "Pretendard", system-ui, sans-serif;
 
   --fs-xs: 11px;
   --fs-sm: 14px;
@@ -139,7 +155,7 @@
   font-size: var(--fs-base);
   line-height: var(--lh-normal);
   color: var(--c-text);
-  color-scheme: dark;
+  color-scheme: light;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -161,24 +177,15 @@ html {
 
 body {
   min-height: 100svh;
-  background: var(--c-bg);
+  /* 레퍼런스(치와와 3D 배경)에 맞춘 진한 하늘색 — 거의 단색에 가깝게 */
+  background:
+    linear-gradient(180deg, #9bd6f0 0%, #7ec5e8 55%, #6ab8e0 100%);
   color: var(--c-text);
   overflow-x: hidden;
 }
 
-/* 별빛 노이즈 오버레이 */
+/* 거대한 흰 구름 덩어리들이 깔린 배경 — 외곽선 없이 부드럽게 */
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.4;
-}
-
-/* 분위기 글로우 (코랄/로즈/골드 라디얼 — 수상한 점집 등불) */
-body::after {
   content: "";
   position: fixed;
   inset: 0;
@@ -186,25 +193,59 @@ body::after {
   z-index: 0;
   background:
     radial-gradient(
-      ellipse at 18% 12%,
-      rgba(253, 164, 175, 0.2),
-      transparent 55%
+      ellipse 420px 150px at 10% 14%,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.4) 45%,
+      transparent 75%
     ),
     radial-gradient(
-      ellipse at 85% 0%,
-      rgba(251, 113, 133, 0.15),
-      transparent 55%
+      ellipse 300px 110px at 82% 10%,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(255, 255, 255, 0.35) 50%,
+      transparent 80%
     ),
     radial-gradient(
-      ellipse at 50% 100%,
-      rgba(253, 230, 138, 0.12),
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse at 100% 60%,
-      rgba(131, 24, 67, 0.18),
-      transparent 50%
+      ellipse 360px 130px at 92% 42%,
+      rgba(255, 255, 255, 0.78) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 80%
     );
+  opacity: 0.9;
+}
+
+/* 햇살 + 하단에 깔린 안개구름 (캐릭터 발치) */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    /* 좌상단 햇살 */
+    radial-gradient(
+      ellipse at 18% 0%,
+      rgba(255, 255, 255, 0.55),
+      transparent 55%
+    ),
+    /* 우하단 노을 (치와와 털색) */
+      radial-gradient(
+        ellipse at 100% 100%,
+        rgba(255, 179, 71, 0.18),
+        transparent 50%
+      ),
+    /* 좌하단 핑크 노을 */
+      radial-gradient(
+        ellipse at 0% 100%,
+        rgba(255, 133, 194, 0.12),
+        transparent 50%
+      ),
+    /* 하단 깔린 안개구름 (가장 진한 흰 띠) */
+      radial-gradient(
+        ellipse 130% 32% at 50% 108%,
+        rgba(255, 255, 255, 0.75),
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 80%
+      );
 }
 
 #root {
@@ -221,11 +262,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-serif);
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-weight: 400;
   line-height: var(--lh-tight);
   color: var(--c-text);
   margin: 0;
+  letter-spacing: 0.02em;
 }
 
 h1 {
@@ -282,26 +324,27 @@ select {
 }
 
 :focus-visible {
-  outline: 2px solid var(--c-coral);
+  outline: 2px solid var(--color-primary);
   outline-offset: 3px;
   border-radius: var(--r-sm);
 }
 
 ::selection {
-  background: rgba(251, 113, 133, 0.4);
+  background: rgba(33, 150, 243, 0.35);
   color: var(--c-text);
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--c-bg);
+  background: var(--color-cloud);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--c-wine-mid);
+  background: var(--color-sky-mid);
   border-radius: var(--r-full);
+  border: 2px solid var(--color-cloud);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--c-coral-deep);
+  background: var(--color-primary);
 }
