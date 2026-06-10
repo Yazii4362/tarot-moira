@@ -8,6 +8,9 @@
 /* ── Pretendard Variable — 본문 ── */
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css");
 
+/* ── Anton — 로고 타이틀 (condensed bold) ── */
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
 /* ── DungGeunMo — 제목 (둥근모) ── */
 @font-face {
   font-family: "DungGeunMo";
@@ -109,6 +112,9 @@
     system-ui, sans-serif;
   --font-serif: "Pretendard Variable", "Pretendard", system-ui, sans-serif;
   --font-sans: "Pretendard Variable", "Pretendard", system-ui, sans-serif;
+  /* condensed bold 영문 — 로고 타이틀 등 임팩트 카피용 */
+  --font-condensed: "Anton", "Oswald", "Arial Narrow", "Impact",
+    "Pretendard Variable", system-ui, sans-serif;
 
   --fs-xs: 11px;
   --fs-sm: 14px;

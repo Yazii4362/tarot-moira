@@ -29,6 +29,7 @@ export function Layout() {
         <div className="app-header__inner">
           <Link to="/" className="brand" aria-label="와와타로 홈으로">
             <WawaLogoMark className="brand__mark" size={40} />
+            <span className="brand__title">WAWA TAROT</span>
           </Link>
 
           <button

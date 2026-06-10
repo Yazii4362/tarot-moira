@@ -4157,3 +4157,27 @@
 .home-cat--violet {
   --cat-accent: var(--color-purple);
 }
+
+/* ============================================================
+   BRAND TITLE — 헤더 로고 옆 "WAWA TAROT" condensed bold
+   ============================================================ */
+
+.brand .brand__title {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: clamp(20px, 2.4vw, 28px);
+  letter-spacing: 0.04em;
+  color: var(--c-text);
+  line-height: 1;
+  text-transform: uppercase;
+  /* Anton 자체 폰트 두께를 살짝 더 단단하게 */
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .brand .brand__title {
+    font-size: 18px;
+    letter-spacing: 0.02em;
+  }
+}
