@@ -8,9 +8,9 @@ interface WawaMascotProps {
 }
 
 const SRC: Record<WawaMascotMode, string> = {
-  pair: "/images/wawa/wawa-pair.png",
-  angel: "/images/wawa/wawa-angel.png",
-  demon: "/images/wawa/wawa-demon.png",
+  pair: "/images/wawa/wawa-pair.webp",
+  angel: "/images/wawa/wawa-angel.webp",
+  demon: "/images/wawa/wawa-demon.webp",
 };
 
 const ALT: Record<WawaMascotMode, string> = {
